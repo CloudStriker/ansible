@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Delete rclone config file
+    file:
+      path: /root/.config/rclone/rclone.conf
+      state: absent
+      

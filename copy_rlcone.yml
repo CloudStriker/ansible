@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Copy rclone config file
+    copy:
+      src: ~/rclone/rclone.conf 
+      dest: /root/.config/rclone/rclone.conf

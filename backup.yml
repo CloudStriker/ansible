@@ -1,0 +1,20 @@
+---
+
+- hosts: backup_server
+  become: true
+  serial: 3
+  tasks:
+  - name: Run the IncScheduler script for Cyberpanel
+    shell: "/usr/local/CyberCP/bin/python /usr/local/CyberCP/plogical/IncScheduler.py Daily"
+  - name: Get dynamic IP address
+    shell: curl ifconfig.me
+    register: dynamic_ip
+  - name: Construct Rclone command
+    set_fact:
+      rclone_cmd: "rclone copy /home/backup/ mega:{{ dynamic_ip.stdout }}/"
+  - name: Execute Rclone copy
+    shell: "{{ rclone_cmd }}"
+  - name: Delete backup file
+    file:
+      path: /home/backup/
+      state: absent
