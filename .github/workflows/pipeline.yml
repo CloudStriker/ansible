@@ -12,7 +12,7 @@ jobs:
           cd /home/ubuntu/ansible/
           ls
           git show -1 --stat > gitlog.txt
-      - name: Send email Telegram
+      - name: Send email Telegram (Still Search)
         uses: xinthink/action-telegram@v1.1
         with:
           botToken: ${{ secrets.BotToken }}
