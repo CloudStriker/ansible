@@ -7,14 +7,4 @@ jobs:
     name: Deploy to Ec2 instance
     runs-on: self-hosted
     steps:
-      - name: TO EC2 instance
-        run: |
-          cd /home/ubuntu/ansible/
-          ls
-          git show -1 --stat > gitlog.txt
-      - name: Send email Telegram (Still Search)
-        uses: xinthink/action-telegram@v1.1
-        with:
-          botToken: ${{ secrets.BotToken }}
-          chatId: ${{ secrets.ChatID }}
-          jobStatus: ${{ job.status }}
+      - uses: actions/checkout@v2
