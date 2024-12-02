@@ -12,16 +12,9 @@ jobs:
           cd /home/ubuntu/ansible/
           ls
           git show -1 --stat > gitlog.txt
-      - name: Send email with commit ID
-        uses: dawidd6/action-send-mail@v1.3.0
+      - name: Send email Telegram
+        uses: xinthink/action-telegram@v1.1
         with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: Codex-Server-New commit on main branch
-          to: ${{ secrets.EMAIL_USERNAME }}
-          from: ${{ secrets.EMAIL_USERNAME }}
-          body: ${{ github.sha }}
-          attachments: |
-              /home/ubuntu/ansible/gitlog.txt
+          botToken: ${{ secrets.BotToken }}
+          chatId: ${{ secrets.ChatID }}
+          jobStatus: ${{ job.status }}
