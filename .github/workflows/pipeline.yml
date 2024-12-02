@@ -7,4 +7,7 @@ jobs:
     name: Deploy to Ec2 instance
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - name: Git pull in specific directory
+        run: |
+          cd /home/ubuntu/ansible
+          git pull origin main
